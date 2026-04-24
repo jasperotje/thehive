@@ -522,6 +522,9 @@
     }
 
     .event-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
@@ -532,6 +535,17 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       white-space: nowrap;
+    }
+
+    .event-status.is-link {
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .event-status.is-link:hover,
+    .event-status.is-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: rgba(255, 212, 0, 0.08);
     }
 
     .info-grid {
@@ -696,9 +710,9 @@
     }
 
     .ticket-copy h2 {
-      margin: 12px 0 12px;
+      margin: 8px 0 10px;
       font-family: "Anton", sans-serif;
-      font-size: clamp(3rem, 9vw, 5.6rem);
+      font-size: clamp(2.6rem, 8vw, 4.8rem);
       line-height: 0.9;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -715,14 +729,14 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 18px;
     }
 
     .ticket-embed {
       width: 100%;
-      max-width: 760px;
-      height: 820px;
-      margin: 30px auto 0;
+      max-width: 640px;
+      height: 720px;
+      margin: 22px auto 0;
       border: 1px solid rgba(255, 212, 0, 0.14);
       border-radius: 22px;
       background: rgba(255, 212, 0, 0.03);
@@ -796,7 +810,7 @@
 
       .ticket-embed {
         max-width: 100%;
-        height: 700px;
+        height: 640px;
       }
 
       .poster-row,
@@ -905,7 +919,7 @@
               <h3 class="event-title">Club Bold</h3>
               <div class="event-meta">Eindhoven / Friday 10 July 2026 / 23:00 - 04:00</div>
             </div>
-            <div class="event-status">Tickets Soon</div>
+            <a class="event-status is-link" href="#tickets">Get Tickets</a>
           </div>
           <div class="event-row">
             <strong>02</strong>
