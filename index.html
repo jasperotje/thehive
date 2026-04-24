@@ -6,7 +6,7 @@
   <title>THE HIVE | House Event</title>
   <meta
     name="description"
-    content="THE HIVE is a house and UK garage event by STINGER at Club Bold in Eindhoven on Friday 10 July 2026."
+    content="THE HIVE is a house and UK garage event series by STINGER. Upcoming event: Club Bold, Eindhoven, Friday 10 July 2026."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +16,18 @@
   >
   <style>
     :root {
-      --bg: #090909;
-      --bg-soft: #121212;
-      --text: #f5efcf;
-      --muted: #bba95d;
+      --bg: #080808;
+      --bg-soft: #111111;
+      --panel: rgba(255, 212, 0, 0.07);
+      --panel-strong: rgba(255, 212, 0, 0.12);
+      --text: #f6f0d0;
+      --muted: #bcab67;
       --gold: #ffd400;
-      --line: rgba(255, 212, 0, 0.18);
-      --panel: rgba(255, 212, 0, 0.05);
-      --max: 1180px;
+      --gold-2: #ffbf00;
+      --line: rgba(255, 212, 0, 0.16);
+      --line-strong: rgba(255, 212, 0, 0.28);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+      --max: 1220px;
     }
 
     * {
@@ -36,13 +40,15 @@
 
     body {
       margin: 0;
+      min-height: 100vh;
       color: var(--text);
       font-family: "Space Grotesk", sans-serif;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255, 212, 0, 0.14), transparent 24%),
-        radial-gradient(circle at 85% 12%, rgba(255, 212, 0, 0.08), transparent 16%),
-        linear-gradient(180deg, #141414 0%, #090909 48%, #060606 100%);
-      min-height: 100vh;
+        radial-gradient(circle at 10% 10%, rgba(255, 212, 0, 0.14), transparent 22%),
+        radial-gradient(circle at 85% 8%, rgba(255, 191, 0, 0.14), transparent 18%),
+        linear-gradient(135deg, rgba(255, 212, 0, 0.028) 25%, transparent 25%) 0 0 / 74px 74px,
+        linear-gradient(315deg, rgba(255, 212, 0, 0.024) 25%, transparent 25%) 0 0 / 74px 74px,
+        linear-gradient(180deg, #141414 0%, #090909 45%, #060606 100%);
       overflow-x: hidden;
     }
 
@@ -54,16 +60,37 @@
       background:
         repeating-linear-gradient(
           90deg,
-          transparent 0 20px,
-          rgba(255, 212, 0, 0.012) 20px 21px
+          transparent 0 18px,
+          rgba(255, 212, 0, 0.012) 18px 19px
         ),
         repeating-linear-gradient(
           0deg,
-          transparent 0 20px,
-          rgba(255, 212, 0, 0.01) 20px 21px
+          transparent 0 18px,
+          rgba(255, 212, 0, 0.01) 18px 19px
         );
       opacity: 0.34;
       mix-blend-mode: screen;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 212, 0, 0.12), transparent 24%),
+        radial-gradient(circle at 20% 80%, rgba(255, 212, 0, 0.05), transparent 18%);
+      animation: ambientPulse 8s ease-in-out infinite alternate;
+      opacity: 0.6;
+    }
+
+    @keyframes ambientPulse {
+      from {
+        transform: scale(1) translateY(0);
+      }
+      to {
+        transform: scale(1.04) translateY(-1.5%);
+      }
     }
 
     a {
@@ -84,9 +111,9 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(9, 9, 9, 0.84);
+      z-index: 30;
       backdrop-filter: blur(16px);
+      background: rgba(8, 8, 8, 0.82);
       border-bottom: 1px solid var(--line);
     }
 
@@ -95,7 +122,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      min-height: 78px;
+      min-height: 82px;
     }
 
     .brand {
@@ -106,12 +133,12 @@
     }
 
     .brand img {
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
       object-fit: cover;
-      border-radius: 12px;
       border: 1px solid rgba(255, 212, 0, 0.18);
-      box-shadow: 0 0 24px rgba(255, 212, 0, 0.08);
+      box-shadow: 0 0 26px rgba(255, 212, 0, 0.1);
       flex: 0 0 auto;
     }
 
@@ -122,19 +149,19 @@
     .brand-title {
       margin: 0;
       font-family: "Anton", sans-serif;
-      font-size: 1.55rem;
+      font-size: 1.65rem;
       line-height: 1;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .brand-sub {
-      margin-top: 4px;
+      margin-top: 5px;
       color: var(--muted);
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
 
     .nav {
@@ -144,9 +171,27 @@
       gap: 18px;
       color: var(--muted);
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
     }
 
     .nav a:hover,
@@ -156,19 +201,13 @@
       color: var(--gold);
     }
 
+    .nav a:hover::after,
+    .nav a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
     main section[id] {
-      scroll-margin-top: 110px;
-    }
-
-    .hero {
-      padding: 56px 0 38px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      gap: 34px;
-      align-items: center;
+      scroll-margin-top: 112px;
     }
 
     .mono {
@@ -176,39 +215,80 @@
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
+    }
+
+    .hero {
+      position: relative;
+      padding: 54px 0 34px;
+      overflow: clip;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+      gap: 34px;
+      align-items: end;
+    }
+
+    .hero-copy {
+      position: relative;
+      padding-top: 26px;
+      animation: riseIn 700ms ease both;
     }
 
     .hero-copy::before {
       content: "";
       display: block;
-      width: min(440px, 64vw);
+      width: min(440px, 68vw);
       height: 1px;
       margin-bottom: 20px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
 
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto auto 6% -4%;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 212, 0, 0.16), transparent 68%);
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .hero-title {
-      margin: 10px 0 0;
+      margin: 14px 0 0;
       font-family: "Anton", sans-serif;
-      font-size: clamp(4.2rem, 13vw, 9rem);
-      line-height: 0.86;
-      letter-spacing: 0.03em;
+      font-size: clamp(4.8rem, 15vw, 10.6rem);
+      line-height: 0.82;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .hero-title span {
       display: block;
       color: var(--gold);
-      text-shadow: 0 0 26px rgba(255, 212, 0, 0.14);
+      text-shadow: 0 0 30px rgba(255, 212, 0, 0.14);
     }
 
     .hero-text {
-      max-width: 34rem;
-      margin: 22px 0 0;
-      color: #e7ddac;
-      font-size: 1.04rem;
-      line-height: 1.82;
+      max-width: 35rem;
+      margin: 20px 0 0;
+      color: #eadfb0;
+      font-size: 1.06rem;
+      line-height: 1.88;
     }
 
     .hero-actions {
@@ -229,7 +309,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
     }
 
     .btn:hover,
@@ -238,148 +318,177 @@
     }
 
     .btn-primary {
+      color: #0a0a0a;
       background: var(--gold);
-      color: #090909;
-      box-shadow: 0 16px 34px rgba(255, 212, 0, 0.14);
+      box-shadow: 0 18px 36px rgba(255, 212, 0, 0.16);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      box-shadow: 0 22px 44px rgba(255, 212, 0, 0.2);
     }
 
     .btn-secondary {
-      border-color: var(--line);
-      background: rgba(255, 212, 0, 0.04);
       color: var(--text);
+      border-color: var(--line);
+      background: rgba(255, 212, 0, 0.035);
     }
 
-    .hero-panel {
+    .hero-poster {
+      position: relative;
+      min-height: 520px;
       padding: 28px;
       border: 1px solid var(--line);
-      border-radius: 28px;
+      border-radius: 30px;
       background:
-        radial-gradient(circle at 18% 18%, rgba(255, 212, 0, 0.08), transparent 26%),
-        linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(8, 8, 8, 0.98));
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+        linear-gradient(160deg, rgba(255, 212, 0, 0.14), transparent 36%),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.98), rgba(8, 8, 8, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: posterFloat 5s ease-in-out infinite;
     }
 
-    .info-list {
-      display: grid;
-      gap: 18px;
+    @keyframes posterFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
-    .info-item {
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--line);
+    .hero-poster::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 22px;
+      border: 1px dashed rgba(255, 212, 0, 0.14);
     }
 
-    .info-item:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
+    .poster-mark {
+      position: absolute;
+      inset: auto -10% 10% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 212, 0, 0.18);
+      background: radial-gradient(circle at center, rgba(255, 212, 0, 0.14), transparent 62%);
+      filter: blur(1px);
     }
 
-    .info-item strong {
-      display: block;
-      margin-top: 8px;
+    .poster-date {
       font-family: "Anton", sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2.6rem);
-      line-height: 0.96;
+      font-size: clamp(3.4rem, 9vw, 5.8rem);
+      line-height: 0.9;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--gold);
+      max-width: 10ch;
+      position: relative;
+      z-index: 1;
     }
 
-    .info-item p {
-      margin: 10px 0 0;
-      color: #e7dca8;
+    .poster-meta {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poster-row {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .poster-row span {
+      color: #ecdcb1;
       line-height: 1.7;
     }
 
+    .poster-foot {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line-strong);
+      color: #f1e2b5;
+      font-weight: 500;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
     section {
-      padding: 56px 0;
+      position: relative;
+      padding: 62px 0;
     }
 
     .section-head {
       display: grid;
       gap: 10px;
-      max-width: 46rem;
-      margin-bottom: 28px;
+      max-width: 48rem;
+      margin-bottom: 30px;
     }
 
     .section-title {
       margin: 0;
       font-family: "Anton", sans-serif;
-      font-size: clamp(2.6rem, 9vw, 5rem);
+      font-size: clamp(3rem, 10vw, 6rem);
       line-height: 0.9;
-      letter-spacing: 0.03em;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .section-copy {
       margin: 0;
       color: #dfd094;
-      line-height: 1.82;
-    }
-
-    .overview-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 34px;
-      align-items: start;
-    }
-
-    .overview-text {
-      color: #e6ddad;
-      line-height: 1.9;
-      max-width: 34rem;
-    }
-
-    .details {
-      border-top: 1px solid var(--line);
-    }
-
-    .details-row {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 18px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .details-row strong,
-    .lineup-row strong {
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .details-row span {
-      color: #eadfb0;
-      line-height: 1.78;
+      line-height: 1.84;
+      max-width: 38rem;
     }
 
     .events-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-      gap: 34px;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 38px;
       align-items: start;
     }
 
-    .events-copy {
-      max-width: 34rem;
-      color: #e6ddad;
-      line-height: 1.9;
+    .events-rail {
+      position: sticky;
+      top: 112px;
+      padding-top: 6px;
     }
 
-    .event-list {
+    .events-rail::after {
+      content: "";
+      display: block;
+      width: min(280px, 100%);
+      height: 14px;
+      margin-top: 26px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(-45deg, var(--gold) 0 16px, #0f0f0f 16px 32px);
+      opacity: 0.9;
+    }
+
+    .events-list {
       border-top: 1px solid var(--line);
     }
 
     .event-row {
       display: grid;
-      grid-template-columns: 140px 1fr auto;
+      grid-template-columns: 110px minmax(0, 1fr) auto;
       gap: 20px;
-      align-items: baseline;
-      padding: 20px 0;
+      align-items: end;
+      padding: 28px 0;
       border-bottom: 1px solid var(--line);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .event-row:hover {
+      transform: translateX(6px);
+      border-color: var(--line-strong);
     }
 
     .event-row strong {
@@ -388,6 +497,8 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
+      align-self: start;
+      padding-top: 8px;
     }
 
     .event-main {
@@ -397,21 +508,25 @@
     .event-title {
       margin: 0;
       font-family: "Anton", sans-serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      line-height: 0.95;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 0.92;
       text-transform: uppercase;
       letter-spacing: 0.03em;
       color: var(--gold);
     }
 
     .event-meta {
-      margin-top: 8px;
-      color: #e8ddb0;
-      line-height: 1.72;
+      margin-top: 10px;
+      color: #eadfb0;
+      line-height: 1.8;
     }
 
     .event-status {
-      color: #dcc883;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 212, 0, 0.04);
+      color: var(--gold);
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.78rem;
       text-transform: uppercase;
@@ -419,17 +534,68 @@
       white-space: nowrap;
     }
 
+    .info-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 38px;
+      align-items: start;
+    }
+
+    .info-copy {
+      max-width: 35rem;
+      color: #e6ddad;
+      line-height: 1.9;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .fact {
+      padding: 18px 0 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .fact span {
+      display: block;
+      margin-top: 12px;
+      color: #f0e5b5;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(1.45rem, 3vw, 2.4rem);
+      line-height: 0.96;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .fact p {
+      margin: 10px 0 0;
+      color: #e1d193;
+      line-height: 1.75;
+    }
+
     .lineup-head {
       display: grid;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 20px;
     }
 
     .lineup-title {
       margin: 0;
       font-family: "Anton", sans-serif;
-      font-size: clamp(3.4rem, 12vw, 7rem);
-      line-height: 0.88;
+      font-size: clamp(4.4rem, 14vw, 8.6rem);
+      line-height: 0.86;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--gold);
@@ -440,54 +606,110 @@
     }
 
     .lineup-row {
+      position: relative;
       display: grid;
-      grid-template-columns: 150px 1fr;
+      grid-template-columns: 120px minmax(0, 1fr);
       gap: 20px;
       align-items: baseline;
-      padding: 18px 0;
+      padding: 22px 0 18px;
       border-bottom: 1px solid var(--line);
+      transition: transform 180ms ease;
+    }
+
+    .lineup-row:hover {
+      transform: translateX(8px);
+    }
+
+    .lineup-row::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 220ms ease;
+    }
+
+    .lineup-row:hover::after {
+      width: 100%;
+    }
+
+    .lineup-row strong {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     .lineup-name {
       margin: 0;
       font-family: "Anton", sans-serif;
-      font-size: clamp(2.2rem, 6vw, 4.8rem);
-      line-height: 0.92;
-      letter-spacing: 0.03em;
+      font-size: clamp(2.8rem, 8vw, 6.6rem);
+      line-height: 0.88;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .lineup-row.is-tba .lineup-name {
+      color: rgba(246, 240, 208, 0.72);
     }
 
     .tickets {
-      padding-bottom: 72px;
+      padding-bottom: 76px;
     }
 
     .ticket-slab {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.85fr);
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.86fr);
       gap: 28px;
-      padding: 30px;
-      border: 1px solid rgba(255, 212, 0, 0.24);
-      border-radius: 28px;
+      padding: 32px;
+      border-radius: 30px;
+      border: 1px solid var(--line-strong);
       background:
-        radial-gradient(circle at 16% 18%, rgba(255, 212, 0, 0.12), transparent 24%),
-        linear-gradient(180deg, rgba(18, 18, 18, 0.98), rgba(8, 8, 8, 0.98));
-      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.36);
+        radial-gradient(circle at 14% 18%, rgba(255, 212, 0, 0.12), transparent 26%),
+        linear-gradient(180deg, rgba(20, 20, 20, 0.98), rgba(8, 8, 8, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .ticket-slab::before,
+    .ticket-slab::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 34px;
+      height: 34px;
+      margin-top: -17px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid rgba(255, 212, 0, 0.12);
+    }
+
+    .ticket-slab::before {
+      left: -17px;
+    }
+
+    .ticket-slab::after {
+      right: -17px;
     }
 
     .ticket-copy h2 {
       margin: 12px 0 12px;
       font-family: "Anton", sans-serif;
-      font-size: clamp(2.8rem, 8vw, 5rem);
-      line-height: 0.92;
-      text-transform: uppercase;
+      font-size: clamp(3rem, 9vw, 5.6rem);
+      line-height: 0.9;
       letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
 
     .ticket-copy p {
       margin: 0;
-      max-width: 32rem;
+      max-width: 34rem;
       color: #eadfb2;
-      line-height: 1.84;
+      line-height: 1.86;
     }
 
     .ticket-actions {
@@ -536,7 +758,7 @@
     }
 
     .footer {
-      padding: 0 0 28px;
+      padding: 0 0 30px;
     }
 
     .footer-inner {
@@ -544,7 +766,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 16px;
-      padding-top: 18px;
+      padding-top: 20px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 0.92rem;
@@ -558,14 +780,18 @@
     @media (max-width: 1024px) {
       .hero-grid,
       .events-grid,
-      .overview-grid,
+      .info-grid,
       .ticket-slab {
         grid-template-columns: 1fr;
       }
 
+      .events-rail {
+        position: static;
+      }
+
       .prices {
         padding-left: 0;
-        padding-top: 22px;
+        padding-top: 24px;
         border-left: 0;
         border-top: 1px dashed rgba(255, 212, 0, 0.18);
       }
@@ -583,25 +809,26 @@
       }
 
       .hero {
-        padding-top: 36px;
+        padding-top: 38px;
       }
 
       .hero-title {
-        font-size: clamp(3.6rem, 20vw, 5.8rem);
+        font-size: clamp(4rem, 21vw, 6.4rem);
       }
 
-      .hero-panel {
+      .hero-poster,
+      .ticket-slab {
         padding: 22px;
       }
 
-      .details-row,
+      .poster-row,
       .event-row,
       .lineup-row {
         grid-template-columns: 1fr;
       }
 
-      .ticket-slab {
-        padding: 22px;
+      .facts {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -613,6 +840,7 @@
       *,
       *::before,
       *::after {
+        animation: none !important;
         transition: none !important;
       }
     }
@@ -645,8 +873,7 @@
           <div class="mono">House &amp; UK Garage / Event Series</div>
           <h1 class="hero-title">The <span>Hive</span></h1>
           <p class="hero-text">
-            THE HIVE is a small-scale event series built around house, UK garage, and a strong dance floor.
-            Simple setup, clear energy, and a phone-free atmosphere.
+            A small-scale club concept built around strong groove, a sharp atmosphere, and a dance floor that stays central all night.
           </p>
 
           <div class="hero-actions">
@@ -656,41 +883,50 @@
           </div>
         </div>
 
-        <aside class="hero-panel" aria-label="Event details">
-          <div class="info-list">
-            <div class="info-item">
-              <div class="mono">Next Event</div>
-              <strong>10 July 2026</strong>
-              <p>Club Bold, Eindhoven</p>
+        <aside class="hero-poster" aria-label="Next event">
+          <div class="mono">Next Event</div>
+          <div class="poster-date">10 July 2026</div>
+
+          <div class="poster-meta">
+            <div class="poster-row">
+              <div class="mono">Venue</div>
+              <span>Club Bold, Eindhoven</span>
             </div>
-            <div class="info-item">
+            <div class="poster-row">
               <div class="mono">Time</div>
-              <strong>23:00 - 04:00</strong>
+              <span>23:00 - 04:00</span>
             </div>
-            <div class="info-item">
-              <div class="mono">Hosted By</div>
-              <strong>STINGER</strong>
+            <div class="poster-row">
+              <div class="mono">Host</div>
+              <span>STINGER</span>
             </div>
-            <div class="info-item">
+            <div class="poster-row">
               <div class="mono">Policy</div>
-              <strong>18+ / Phone Free</strong>
+              <span>18+ / Phone Free Event</span>
             </div>
           </div>
+
+          <div class="poster-foot">
+            Clean event information, stronger motion, and a more distinct visual identity without losing the clarity of a public event page.
+          </div>
+          <div class="poster-mark" aria-hidden="true"></div>
         </aside>
       </div>
     </section>
 
     <section id="events">
       <div class="wrap events-grid">
-        <div class="section-head">
-          <div class="mono">Upcoming</div>
-          <h2 class="section-title">Events</h2>
-          <p class="section-copy events-copy">
-            Upcoming dates, locations, and updates for THE HIVE.
-          </p>
+        <div class="events-rail">
+          <div class="section-head">
+            <div class="mono">Upcoming</div>
+            <h2 class="section-title">Events</h2>
+            <p class="section-copy">
+              THE HIVE works as a series, not a one-off page. That lets the identity stay consistent while dates, venues, and cities can grow over time.
+            </p>
+          </div>
         </div>
 
-        <div class="event-list" aria-label="Upcoming events">
+        <div class="events-list" aria-label="Upcoming events">
           <div class="event-row">
             <strong>01</strong>
             <div class="event-main">
@@ -702,49 +938,53 @@
           <div class="event-row">
             <strong>02</strong>
             <div class="event-main">
-              <h3 class="event-title">More Upcoming Events</h3>
-              <div class="event-meta">New dates and locations will be announced via @thehive.house</div>
+              <h3 class="event-title">More Dates Soon</h3>
+              <div class="event-meta">Future locations and new announcements will be shared via @thehive.house</div>
             </div>
             <div class="event-status">TBA</div>
+          </div>
+          <div class="event-row">
+            <strong>03</strong>
+            <div class="event-main">
+              <h3 class="event-title">Series Update</h3>
+              <div class="event-meta">This format is ready for new editions without rebuilding the whole website each time.</div>
+            </div>
+            <div class="event-status">Open</div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="info">
-      <div class="wrap overview-grid">
+      <div class="wrap info-grid">
         <div class="section-head">
           <div class="mono">Details</div>
           <h2 class="section-title">Info</h2>
-          <p class="section-copy overview-text">
-            Good music, a clear setting, and no unnecessary distractions. Everything guests need to know is here.
+          <p class="section-copy info-copy">
+            Everything guests need to know, kept clear and visible without turning the page into a plain template.
           </p>
         </div>
 
-        <div class="details" aria-label="Event details">
-          <div class="details-row">
+        <div class="facts" aria-label="Event details">
+          <div class="fact">
             <strong>Music</strong>
-            <span>House and UK garage</span>
+            <span>House</span>
+            <p>House, UK garage, and a club-first selection.</p>
           </div>
-          <div class="details-row">
+          <div class="fact">
             <strong>Current Event</strong>
-            <span>Club Bold, Eindhoven</span>
+            <span>Club Bold</span>
+            <p>Eindhoven / Friday 10 July 2026.</p>
           </div>
-          <div class="details-row">
-            <strong>Date</strong>
-            <span>Friday 10 July 2026</span>
-          </div>
-          <div class="details-row">
+          <div class="fact">
             <strong>Time</strong>
             <span>23:00 - 04:00</span>
+            <p>Late start, focused run time, no unnecessary filler.</p>
           </div>
-          <div class="details-row">
-            <strong>Age</strong>
-            <span>18+</span>
-          </div>
-          <div class="details-row">
+          <div class="fact">
             <strong>Policy</strong>
-            <span>This is a phone free event.</span>
+            <span>Phone Free</span>
+            <p>18+ only. Keep the floor present and the room clean.</p>
           </div>
         </div>
       </div>
@@ -762,15 +1002,15 @@
             <strong>Host</strong>
             <h3 class="lineup-name">STINGER</h3>
           </div>
-          <div class="lineup-row">
+          <div class="lineup-row is-tba">
             <strong>Guest</strong>
             <h3 class="lineup-name">TBA</h3>
           </div>
-          <div class="lineup-row">
+          <div class="lineup-row is-tba">
             <strong>Guest</strong>
             <h3 class="lineup-name">TBA</h3>
           </div>
-          <div class="lineup-row">
+          <div class="lineup-row is-tba">
             <strong>Guest</strong>
             <h3 class="lineup-name">TBA</h3>
           </div>
@@ -785,8 +1025,7 @@
             <div class="mono">Access</div>
             <h2>Tickets</h2>
             <p>
-              The ticket link is not live yet. Until then, guests can follow the Instagram page for
-              the first drop and updates.
+              The ticket link is not live yet. For the first drop, pricing updates, and future dates, follow the page on Instagram.
             </p>
 
             <div class="ticket-actions">
