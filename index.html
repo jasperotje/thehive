@@ -220,11 +220,42 @@
 
     .hero {
       position: relative;
-      padding: 54px 0 34px;
+      padding: 54px 0 88px;
+      margin-bottom: -34px;
       overflow: clip;
     }
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 -110px;
+      background:
+        linear-gradient(90deg, rgba(8, 8, 8, 0.76) 0%, rgba(8, 8, 8, 0.46) 36%, rgba(8, 8, 8, 0.72) 100%),
+        linear-gradient(180deg, rgba(8, 8, 8, 0.08) 0%, rgba(8, 8, 8, 0.08) 48%, rgba(8, 8, 8, 0.58) 76%, rgba(8, 8, 8, 0.9) 100%),
+        url("assets/crowd.png") center 22% / cover no-repeat;
+      opacity: 0.66;
+      transform: scale(1.02);
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -120px;
+      height: min(360px, 44vw);
+      background:
+        linear-gradient(180deg, rgba(8, 8, 8, 0) 0%, rgba(8, 8, 8, 0.16) 24%, rgba(8, 8, 8, 0.44) 52%, rgba(8, 8, 8, 0.78) 76%, #080808 100%);
+      filter: blur(14px);
+      opacity: 0.96;
+      pointer-events: none;
+    }
+
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
       gap: 34px;
@@ -809,6 +840,7 @@
 
       .hero {
         padding-top: 38px;
+        padding-bottom: 72px;
       }
 
       .hero-title {
