@@ -674,13 +674,6 @@
       overflow: hidden;
     }
 
-    .ticket-top {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-      gap: 28px;
-      align-items: start;
-    }
-
     .ticket-slab::before,
     .ticket-slab::after {
       content: "";
@@ -713,7 +706,7 @@
 
     .ticket-copy p {
       margin: 0;
-      max-width: 34rem;
+      max-width: 40rem;
       color: #eadfb2;
       line-height: 1.86;
     }
@@ -727,7 +720,9 @@
 
     .ticket-embed {
       width: 100%;
-      height: 860px;
+      max-width: 760px;
+      height: 820px;
+      margin: 30px auto 0;
       border: 1px solid rgba(255, 212, 0, 0.14);
       border-radius: 22px;
       background: rgba(255, 212, 0, 0.03);
@@ -741,44 +736,6 @@
       height: 100%;
       border: 0;
       background: #fff;
-    }
-
-    .prices {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .price-row {
-      display: grid;
-      gap: 8px;
-      align-content: start;
-      min-height: 120px;
-      padding: 18px;
-      border: 1px solid rgba(255, 212, 0, 0.12);
-      border-radius: 20px;
-      background: rgba(255, 212, 0, 0.03);
-    }
-
-    .price-row:last-child {
-      border-bottom: 1px solid rgba(255, 212, 0, 0.12);
-    }
-
-    .price-row strong {
-      font-family: "Anton", sans-serif;
-      font-size: 2rem;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--gold);
-    }
-
-    .price-row span {
-      color: #dcc883;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
     }
 
     .footer {
@@ -804,17 +761,12 @@
     @media (max-width: 1024px) {
       .hero-grid,
       .events-grid,
-      .info-grid,
-      .ticket-top {
+      .info-grid {
         grid-template-columns: 1fr;
       }
 
       .events-rail {
         position: static;
-      }
-
-      .prices {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -843,7 +795,8 @@
       }
 
       .ticket-embed {
-        height: 720px;
+        max-width: 100%;
+        height: 700px;
       }
 
       .poster-row,
@@ -1037,32 +990,15 @@
     <section id="tickets" class="tickets">
       <div class="wrap">
         <div class="ticket-slab">
-          <div class="ticket-top">
-            <div class="ticket-copy">
-              <div class="mono">Access</div>
-              <h2>Tickets</h2>
-              <p>
-                Buy directly below, or open the full Eventgoose page in a separate tab.
-              </p>
+          <div class="ticket-copy">
+            <div class="mono">Access</div>
+            <h2>Tickets</h2>
+            <p>
+              Buy your ticket directly below, or open the full Eventgoose page in a separate tab.
+            </p>
 
-              <div class="ticket-actions">
-                <a class="btn btn-secondary" href="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y/info" target="_blank" rel="noreferrer">Open Full Ticket Page</a>
-              </div>
-            </div>
-
-            <div class="prices" aria-label="Ticket prices">
-              <div class="price-row">
-                <strong>5 EUR</strong>
-                <span>Early</span>
-              </div>
-              <div class="price-row">
-                <strong>7.50 EUR</strong>
-                <span>Normal</span>
-              </div>
-              <div class="price-row">
-                <strong>12.50 EUR</strong>
-                <span>Late</span>
-              </div>
+            <div class="ticket-actions">
+              <a class="btn btn-secondary" href="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y/info" target="_blank" rel="noreferrer">Open Full Ticket Page</a>
             </div>
           </div>
 
