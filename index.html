@@ -46,8 +46,6 @@
       background:
         radial-gradient(circle at 10% 10%, rgba(255, 212, 0, 0.14), transparent 22%),
         radial-gradient(circle at 85% 8%, rgba(255, 191, 0, 0.14), transparent 18%),
-        linear-gradient(135deg, rgba(255, 212, 0, 0.028) 25%, transparent 25%) 0 0 / 74px 74px,
-        linear-gradient(315deg, rgba(255, 212, 0, 0.024) 25%, transparent 25%) 0 0 / 74px 74px,
         linear-gradient(180deg, #141414 0%, #090909 45%, #060606 100%);
       overflow-x: hidden;
     }
@@ -58,18 +56,14 @@
       inset: 0;
       pointer-events: none;
       background:
-        repeating-linear-gradient(
-          90deg,
-          transparent 0 18px,
-          rgba(255, 212, 0, 0.012) 18px 19px
-        ),
-        repeating-linear-gradient(
-          0deg,
-          transparent 0 18px,
-          rgba(255, 212, 0, 0.01) 18px 19px
-        );
-      opacity: 0.34;
-      mix-blend-mode: screen;
+        linear-gradient(30deg, rgba(255, 212, 0, 0.022) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.022) 87.5%, rgba(255, 212, 0, 0.022) 88%, transparent 88.5%, transparent),
+        linear-gradient(150deg, rgba(255, 212, 0, 0.022) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.022) 87.5%, rgba(255, 212, 0, 0.022) 88%, transparent 88.5%, transparent),
+        linear-gradient(30deg, rgba(255, 212, 0, 0.015) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.015) 87.5%, rgba(255, 212, 0, 0.015) 88%, transparent 88.5%, transparent),
+        linear-gradient(150deg, rgba(255, 212, 0, 0.015) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.015) 87.5%, rgba(255, 212, 0, 0.015) 88%, transparent 88.5%, transparent),
+        linear-gradient(90deg, rgba(255, 212, 0, 0.012) 2%, transparent 2.5%, transparent 97.5%, rgba(255, 212, 0, 0.012) 98%);
+      background-size: 84px 146px;
+      background-position: 0 0, 0 0, 42px 73px, 42px 73px, 0 0;
+      opacity: 0.8;
     }
 
     body::after {
