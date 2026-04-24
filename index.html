@@ -366,14 +366,6 @@
       }
     }
 
-    .hero-poster::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border-radius: 22px;
-      border: 1px dashed rgba(255, 212, 0, 0.14);
-    }
-
     .poster-mark {
       position: absolute;
       inset: auto -10% 10% auto;
@@ -383,6 +375,13 @@
       border: 1px solid rgba(255, 212, 0, 0.18);
       background: radial-gradient(circle at center, rgba(255, 212, 0, 0.14), transparent 62%);
       filter: blur(1px);
+    }
+
+    .hero-poster > .mono {
+      display: block;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .poster-date {
@@ -924,28 +923,28 @@
 
         <div class="events-list" aria-label="Upcoming events">
           <div class="event-row">
-            <strong>01</strong>
+            <strong>10 Jul 2026</strong>
             <div class="event-main">
-              <h3 class="event-title">Club Bold</h3>
-              <div class="event-meta">Eindhoven / Friday 10 July 2026 / 23:00 - 04:00</div>
+              <h3 class="event-title">Eindhoven / Club Bold</h3>
+              <div class="event-meta">23:00 - 04:00 / 18+</div>
             </div>
             <a class="event-status is-link" href="#tickets">Get Tickets</a>
           </div>
           <div class="event-row">
-            <strong>02</strong>
+            <strong>TBA</strong>
             <div class="event-main">
-              <h3 class="event-title">More Dates Soon</h3>
-              <div class="event-meta">Future locations and new announcements will be shared via @thehive.house</div>
+              <h3 class="event-title">City / Venue TBA</h3>
+              <div class="event-meta">Time TBA / 18+</div>
             </div>
             <div class="event-status">TBA</div>
           </div>
           <div class="event-row">
-            <strong>03</strong>
+            <strong>TBA</strong>
             <div class="event-main">
-              <h3 class="event-title">Series Update</h3>
-              <div class="event-meta">This format is ready for new editions without rebuilding the whole website each time.</div>
+              <h3 class="event-title">City / Venue TBA</h3>
+              <div class="event-meta">Time TBA / 18+</div>
             </div>
-            <div class="event-status">Open</div>
+            <div class="event-status">TBA</div>
           </div>
         </div>
       </div>
