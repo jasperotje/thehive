@@ -719,6 +719,27 @@
       margin-top: 24px;
     }
 
+    .ticket-embed {
+      width: 100%;
+      max-width: 600px;
+      height: calc(100vh - 120px);
+      max-height: 1000px;
+      margin-top: 24px;
+      border: 1px solid rgba(255, 212, 0, 0.14);
+      border-radius: 22px;
+      background: rgba(255, 212, 0, 0.03);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 212, 0, 0.04);
+    }
+
+    .ticket-embed iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
     .prices {
       display: grid;
       gap: 14px;
@@ -819,6 +840,10 @@
       .hero-poster,
       .ticket-slab {
         padding: 22px;
+      }
+
+      .ticket-embed {
+        height: 780px;
       }
 
       .poster-row,
@@ -1015,13 +1040,17 @@
           <div class="ticket-copy">
             <div class="mono">Access</div>
             <h2>Tickets</h2>
-            <p>
-              The ticket link is not live yet. For the first drop, pricing updates, and future dates, follow the page on Instagram.
-            </p>
+            <div class="ticket-embed">
+              <iframe
+                src="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y"
+                name="eventgoose"
+                title="THE HIVE ticket shop"
+                loading="lazy"
+              ></iframe>
+            </div>
 
             <div class="ticket-actions">
-              <a class="btn btn-primary" href="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y/info" target="_blank" rel="noreferrer">Get Tickets</a>
-              <a class="btn btn-secondary" href="#events">See events</a>
+              <a class="btn btn-secondary" href="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y/info" target="_blank" rel="noreferrer">Open Full Ticket Page</a>
             </div>
           </div>
 
