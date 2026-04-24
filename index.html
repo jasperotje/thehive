@@ -522,9 +522,6 @@
     }
 
     .event-status {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
@@ -535,17 +532,6 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       white-space: nowrap;
-    }
-
-    .event-status.is-link {
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .event-status.is-link:hover,
-    .event-status.is-link:focus-visible {
-      transform: translateY(-2px);
-      border-color: var(--line-strong);
-      background: rgba(255, 212, 0, 0.08);
     }
 
     .info-grid {
@@ -710,9 +696,9 @@
     }
 
     .ticket-copy h2 {
-      margin: 8px 0 10px;
+      margin: 12px 0 12px;
       font-family: "Anton", sans-serif;
-      font-size: clamp(2.6rem, 8vw, 4.8rem);
+      font-size: clamp(3rem, 9vw, 5.6rem);
       line-height: 0.9;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -720,7 +706,7 @@
 
     .ticket-copy p {
       margin: 0;
-      max-width: 40rem;
+      max-width: 34rem;
       color: #eadfb2;
       line-height: 1.86;
     }
@@ -729,27 +715,41 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 24px;
     }
 
-    .ticket-embed {
-      width: 100%;
-      max-width: 640px;
-      height: 720px;
-      margin: 22px auto 0;
-      border: 1px solid rgba(255, 212, 0, 0.14);
-      border-radius: 22px;
+    .prices {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .price-row {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-height: 120px;
+      padding: 18px;
+      border: 1px solid rgba(255, 212, 0, 0.12);
+      border-radius: 20px;
       background: rgba(255, 212, 0, 0.03);
-      overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(255, 212, 0, 0.04);
     }
 
-    .ticket-embed iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #fff;
+    .price-row strong {
+      font-family: "Anton", sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--gold);
+    }
+
+    .price-row span {
+      color: #dcc883;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     .footer {
@@ -782,6 +782,10 @@
       .events-rail {
         position: static;
       }
+
+      .prices {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 720px) {
@@ -806,11 +810,6 @@
       .hero-poster,
       .ticket-slab {
         padding: 22px;
-      }
-
-      .ticket-embed {
-        max-width: 100%;
-        height: 640px;
       }
 
       .poster-row,
@@ -1008,21 +1007,27 @@
             <div class="mono">Access</div>
             <h2>Tickets</h2>
             <p>
-              Buy your ticket directly below, or open the full Eventgoose page in a separate tab.
+              Get your ticket through the official Eventgoose page. Ticket phases are listed below.
             </p>
 
             <div class="ticket-actions">
-              <a class="btn btn-secondary" href="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y/info" target="_blank" rel="noreferrer">Open Full Ticket Page</a>
+              <a class="btn btn-primary" href="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y/info" target="_blank" rel="noreferrer">Get Tickets</a>
             </div>
           </div>
 
-          <div class="ticket-embed">
-            <iframe
-              src="https://thehive.eventgoose.com/events/xmbkd233bZk2Ll8Y"
-              name="eventgoose"
-              title="THE HIVE ticket shop"
-              loading="lazy"
-            ></iframe>
+          <div class="prices" aria-label="Ticket phases">
+            <div class="price-row">
+              <strong>5 EUR</strong>
+              <span>Early</span>
+            </div>
+            <div class="price-row">
+              <strong>7.50 EUR</strong>
+              <span>Normal</span>
+            </div>
+            <div class="price-row">
+              <strong>12.50 EUR</strong>
+              <span>Late</span>
+            </div>
           </div>
         </div>
       </div>
