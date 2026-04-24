@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE HIVE</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --panel: #111111;
+      --panel-2: #151515;
+      --text: #f6f1e7;
+      --muted: #b6ae9d;
+      --yellow: #efb100;
+      --yellow-2: #ffd25a;
+      --line: rgba(255, 210, 90, 0.18);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(239,177,0,0.12), transparent 24%),
+        radial-gradient(circle at 82% 2%, rgba(255,210,90,0.08), transparent 20%),
+        linear-gradient(180deg, #080808 0%, #0d0d0d 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(8, 8, 8, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: radial-gradient(circle at 30% 30%, rgba(255,210,90,0.24), rgba(255,210,90,0.04));
+      color: var(--yellow);
+      box-shadow: inset 0 0 18px rgba(255,210,90,0.08);
+      font-size: 1.1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    nav a:hover { color: var(--yellow-2); }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 42px;
+      align-items: center;
+      padding: 72px 0;
+    }
+
+    .eyebrow {
+      color: var(--yellow-2);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: 0.74rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      margin: 0 0 28px;
+      max-width: 640px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.04rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+      font-size: 0.9rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid var(--line);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--yellow), var(--yellow-2));
+      color: #0a0a0a;
+      border: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 550px;
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,210,90,0.06), rgba(255,255,255,0.02)),
+        var(--panel);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,210,90,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,210,90,0.06) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0.18));
+      pointer-events: none;
+    }
+
+    .poster-frame {
+      position: relative;
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid rgba(255,210,90,0.24);
+      background:
+        linear-gradient(180deg, rgba(255,210,90,0.1), rgba(255,255,255,0.01)),
+        var(--panel-2);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 370px;
+    }
+
+    .poster-sub {
+      color: var(--yellow-2);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+    }
+
+    .poster-title {
+      margin: 8px 0 0;
+      font-size: clamp(2.5rem, 6vw, 4.9rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .poster-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 26px;
+      font-weight: 800;
+      font-size: 1.02rem;
+      color: #fff3c9;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hex-wrap {
+      position: absolute;
+      right: -26px;
+      bottom: -18px;
+      display: grid;
+      grid-template-columns: repeat(3, 56px);
+      gap: 10px;
+      opacity: 0.62;
+      transform: rotate(8deg);
+    }
+
+    .hex {
+      width: 56px;
+      height: 64px;
+      clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
+      background: linear-gradient(180deg, rgba(255,210,90,0.18), rgba(255,210,90,0.04));
+      border: 1px solid rgba(255,210,90,0.2);
+    }
+
+    section { padding: 92px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      max-width: 580px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .lineup-card {
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .lineup-role {
+      color: var(--yellow-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+    }
+
+    .lineup-name {
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .feature-number {
+      color: var(--yellow-2);
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .feature-copy,
+    .location-copy,
+    .faq p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .location-box {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(180deg, rgba(255,210,90,0.05), rgba(255,255,255,0.02)),
+        var(--panel-2);
+    }
+
+    .big-location {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq details {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    .faq summary::-webkit-details-marker { display: none; }
+
+    .footer-cta {
+      padding: 32px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,210,90,0.08), rgba(255,255,255,0.02));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .split,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      nav { display: none; }
+      .hero { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">⬢</span>
+        <span>THE HIVE</span>
+      </a>
+
+      <nav>
+        <a href="#lineup">Line-up</a>
+        <a href="#concept">About</a>
+        <a href="#location">Location</a>
+        <a href="#faq">FAQ</a>
+        <a href="#tickets">Tickets</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Underground house event</div>
+          <h1>THE HIVE</h1>
+          <p>
+            A house-focused night built around groove, character and a strong crowd. Dark tones, warm detail,
+            old-school club energy and a clear identity from top to bottom.
+          </p>
+
+          <div class="hero-meta">
+            <span class="chip">Eindhoven</span>
+            <span class="chip">Venue TBA</span>
+            <span class="chip">House / Garage / Deep / Minimal</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#tickets">Tickets</a>
+            <a class="btn btn-secondary" href="#lineup">View line-up</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="poster-frame">
+            <div>
+              <div class="poster-sub">One room. One sound. One crowd.</div>
+              <h2 class="poster-title">THE HIVE<br/>ALL NIGHT</h2>
+              <div class="poster-list">
+                <div>STINGER</div>
+                <div>TIL-UC-ME</div>
+                <div>IVE LOVERS</div>
+                <div>JEBA</div>
+              </div>
+            </div>
+
+            <div class="poster-sub">Black and yellow / late-night pressure / no filler</div>
+            <div class="hex-wrap" aria-hidden="true">
+              <span class="hex"></span><span class="hex"></span><span class="hex"></span>
+              <span class="hex"></span><span class="hex"></span><span class="hex"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lineup">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Artists</div>
+            <h2>Line-up</h2>
+          </div>
+          <p class="section-copy">
+            A line-up with the right balance from start to finish. Built for flow, not clutter.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card lineup-card">
+            <div class="lineup-role">Host</div>
+            <div class="lineup-name">STINGER</div>
+          </article>
+          <article class="card lineup-card">
+            <div class="lineup-role">Guest</div>
+            <div class="lineup-name">TIL-UC-ME</div>
+          </article>
+          <article class="card lineup-card">
+            <div class="lineup-role">Guest</div>
+            <div class="lineup-name">IVE LOVERS</div>
+          </article>
+        </div>
+
+        <div class="grid-3" style="margin-top:18px;">
+          <article class="card lineup-card">
+            <div class="lineup-role">Guest</div>
+            <div class="lineup-name">JEBA</div>
+          </article>
+          <article class="card lineup-card">
+            <div class="lineup-role">More</div>
+            <div class="lineup-name">TBA</div>
+          </article>
+          <article class="card lineup-card">
+            <div class="lineup-role">More</div>
+            <div class="lineup-name">TBA</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="concept">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">About</div>
+            <h2>Clear identity.<br/>Proper atmosphere.</h2>
+          </div>
+          <p class="section-copy">
+            THE HIVE is built around a recognisable look and feel: black and yellow, subtle hive references,
+            strong typography and a straightforward club-first approach.
+          </p>
+        </div>
+
+        <div class="split">
+          <article class="card">
+            <div class="feature-number">01</div>
+            <div class="feature-title">Visual direction</div>
+            <p class="feature-copy">
+              Dark backgrounds, warm yellow accents, raw layout choices and small details that connect to the
+              hive theme without overdoing it.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="feature-number">02</div>
+            <div class="feature-title">On the floor</div>
+            <p class="feature-copy">
+              The focus stays where it should be: sound, pacing and a room that feels full of energy all night.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="location">
+      <div class="container split">
+        <article class="card location-box">
+          <div>
+            <div class="eyebrow">Location</div>
+            <p class="big-location">Eindhoven</p>
+            <p class="location-copy">
+              The venue will be announced soon. This block can later be updated with the full address, travel info and running order.
+            </p>
+          </div>
+          <div class="chip" style="width: fit-content;">Venue TBA</div>
+        </article>
+
+        <article class="card location-box">
+          <div>
+            <div class="eyebrow">Tickets</div>
+            <p class="big-location">Be there</p>
+            <p class="location-copy">
+              Add your ticket link here when it goes live. Until then, this button can point to Instagram or a sign-up form.
+            </p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="#tickets">Join THE HIVE</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Info</div>
+            <h2>FAQ</h2>
+          </div>
+          <p class="section-copy">
+            Keep it simple. Just the basics people actually want to know.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details open>
+            <summary>Where is THE HIVE taking place?</summary>
+            <p>The first edition takes place in Eindhoven. The exact venue will be announced soon.</p>
+          </details>
+          <details>
+            <summary>What kind of music can I expect?</summary>
+            <p>House with garage, deep and minimal influences. Groove first, with a darker late-night edge.</p>
+          </details>
+          <details>
+            <summary>When do tickets go live?</summary>
+            <p>The ticket button can be linked as soon as sales are live.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="tickets">
+      <div class="container">
+        <div class="footer-cta">
+          <div>
+            <div class="eyebrow">Entry</div>
+            <h2 style="margin-top: 6px;">Join THE HIVE</h2>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="#">Ticket link</a>
+            <a class="btn btn-secondary" href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      THE HIVE — underground house event.
+    </div>
+  </footer>
+</body>
+</html>
