@@ -233,11 +233,11 @@
 
     .tickets-hero {
       position: relative;
-      padding: 52px 0 12px;
+      padding: 72px 0 24px;
     }
 
     .hero-copy {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       text-align: center;
     }
@@ -245,65 +245,75 @@
     .hero-copy::before {
       content: "";
       display: block;
-      width: min(160px, 32vw);
-      height: 1px;
-      margin: 0 auto 18px;
-      background: linear-gradient(90deg, var(--gold), transparent);
+      width: min(190px, 34vw);
+      height: 2px;
+      margin: 0 auto 20px;
+      background: var(--gold);
     }
 
     .hero-title {
-      margin: 12px 0 0;
+      margin: 0;
       font-family: "Anton", sans-serif;
-      font-size: clamp(4.2rem, 11vw, 8rem);
-      line-height: 0.84;
+      font-size: clamp(4.3rem, 10vw, 7.2rem);
+      line-height: 0.88;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--text);
     }
 
     .hero-text {
+      display: grid;
+      gap: 10px;
+      margin-top: 26px;
+      text-transform: uppercase;
+    }
+
+    .hero-location {
       color: var(--gold);
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 0.94;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-meta {
+      color: #eadfb0;
       font-family: "IBM Plex Mono", monospace;
-      font-size: clamp(1rem, 2vw, 1.22rem);
+      font-size: clamp(0.95rem, 1.6vw, 1.08rem);
       line-height: 1.65;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
     .tickets-listing {
       position: relative;
-      padding: 18px 0 56px;
+      padding: 26px 0 72px;
     }
 
     .tickets-panel {
-      width: min(100%, 720px);
+      width: min(100%, 880px);
       margin: 0 auto;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background:
-        linear-gradient(160deg, rgba(255, 212, 0, 0.08), transparent 36%),
-        linear-gradient(180deg, rgba(18, 18, 18, 0.98), rgba(8, 8, 8, 0.98));
-      box-shadow: var(--shadow);
+      padding: 24px;
+      border-radius: 8px;
+      background: var(--gold);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
     }
 
     .ticket-embed-shell {
-      padding: 12px;
-      border: 1px solid rgba(255, 212, 0, 0.14);
-      border-radius: 26px;
-      background: rgba(0, 0, 0, 0.34);
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
     }
 
     .ticket-embed-shell iframe {
       width: 100%;
-      max-width: 600px;
+      max-width: 640px;
       height: calc(100vh - 120px);
       max-height: 1000px;
-      min-height: 760px;
+      min-height: 820px;
       border: none;
       display: block;
       margin: 0 auto;
-      border-radius: 18px;
       background: #000;
     }
 
@@ -416,31 +426,39 @@
       }
 
       .tickets-hero {
-        padding: 32px 0 10px;
+        padding: 42px 0 16px;
       }
 
       .hero-title {
-        font-size: clamp(3.3rem, 24vw, 5.2rem);
+        font-size: clamp(3.3rem, 24vw, 5.1rem);
       }
 
       .hero-text {
-        font-size: 0.98rem;
-        line-height: 1.7;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .hero-location {
+        font-size: clamp(1.8rem, 9vw, 2.7rem);
+      }
+
+      .hero-meta {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        letter-spacing: 0.07em;
+      }
+
+      .tickets-listing {
+        padding: 18px 0 56px;
       }
 
       .tickets-panel {
-        padding: 20px;
-        border-radius: 24px;
-      }
-
-      .ticket-embed-shell {
-        padding: 10px;
-        border-radius: 22px;
+        padding: 14px;
+        border-radius: 6px;
       }
 
       .ticket-embed-shell iframe {
-        min-height: 640px;
-        border-radius: 14px;
+        min-height: 680px;
       }
 
       .footer-inner {
@@ -455,16 +473,20 @@
       }
 
       .hero-title {
-        font-size: clamp(3rem, 25vw, 4.4rem);
+        font-size: clamp(2.9rem, 24vw, 4.2rem);
       }
 
-      .hero-text {
-        font-size: 0.86rem;
-        letter-spacing: 0.06em;
+      .hero-location {
+        font-size: clamp(1.55rem, 11vw, 2.15rem);
+      }
+
+      .hero-meta {
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
       }
 
       .ticket-embed-shell iframe {
-        min-height: 560px;
+        min-height: 600px;
       }
     }
 
@@ -513,11 +535,11 @@
     <section class="tickets-hero">
       <div class="wrap">
         <div class="hero-copy">
-          <div class="mono">Next Event</div>
-          <h1 class="hero-title">Get Tickets</h1>
-          <p class="hero-text">
-            Club Bold / Eindhoven / 10 July 2026 / 23:00 - 04:00 / 18+
-          </p>
+          <h1 class="hero-title">Next Event</h1>
+          <div class="hero-text">
+            <span class="hero-location">Club Bold / Eindhoven</span>
+            <span class="hero-meta">10 July 2026 / 23:00 - 04:00 / 18+</span>
+          </div>
         </div>
       </div>
     </section>
