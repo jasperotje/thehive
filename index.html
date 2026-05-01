@@ -170,6 +170,35 @@
       letter-spacing: 0.12em;
     }
 
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      margin-left: auto;
+      padding: 0;
+      border: 1px solid rgba(255, 212, 0, 0.16);
+      border-radius: 16px;
+      background: rgba(255, 212, 0, 0.04);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .nav-toggle-lines {
+      display: grid;
+      gap: 5px;
+    }
+
+    .nav-toggle-lines span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
     .nav a {
       position: relative;
       padding-bottom: 4px;
@@ -831,16 +860,18 @@
       }
 
       .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px 12px;
         min-height: auto;
         padding: 14px 0 16px;
       }
 
       .brand {
         gap: 12px;
+        min-width: 0;
+        flex: 1 1 auto;
       }
 
       .brand img {
@@ -859,11 +890,49 @@
         letter-spacing: 0.1em;
       }
 
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .topbar.is-open .nav-toggle-lines span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      .topbar.is-open .nav-toggle-lines span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .topbar.is-open .nav-toggle-lines span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
       .nav {
         width: 100%;
-        justify-content: space-between;
-        gap: 10px;
-        font-size: 0.72rem;
+        order: 3;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-top: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 220ms ease, opacity 180ms ease, padding-top 180ms ease;
+      }
+
+      .topbar.is-open .nav {
+        max-height: 260px;
+        padding-top: 10px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav a {
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 212, 0, 0.12);
+        border-radius: 14px;
+        background: rgba(255, 212, 0, 0.035);
+        font-size: 0.75rem;
         letter-spacing: 0.08em;
       }
 
@@ -885,7 +954,7 @@
       }
 
       .hero-grid {
-        gap: 20px;
+        gap: 24px;
       }
 
       .hero-copy {
@@ -980,6 +1049,20 @@
         font-size: clamp(2.8rem, 18vw, 4.8rem);
       }
 
+      section {
+        padding: 50px 0;
+      }
+
+      .section-head {
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .events-grid,
+      .info-grid {
+        gap: 28px;
+      }
+
       .events-rail::after {
         width: min(180px, 100%);
         height: 10px;
@@ -1028,6 +1111,10 @@
         font-size: clamp(3.6rem, 20vw, 6rem);
       }
 
+      .lineup-head {
+        margin-bottom: 16px;
+      }
+
       .lineup-row {
         gap: 10px;
         padding: 18px 0 16px;
@@ -1068,7 +1155,11 @@
 
       .nav {
         gap: 8px;
-        font-size: 0.68rem;
+      }
+
+      .nav a {
+        font-size: 0.72rem;
+        padding: 11px 12px;
       }
 
       .hero {
@@ -1079,16 +1170,12 @@
         font-size: clamp(3rem, 25vw, 4.4rem);
       }
 
-      .hero-actions {
-        grid-template-columns: 1fr;
-      }
-
       .event-title {
         font-size: clamp(1.85rem, 13vw, 3rem);
       }
 
       .event-status {
-        width: 100%;
+        width: auto;
         justify-content: center;
       }
     }
@@ -1118,7 +1205,15 @@
         </div>
       </a>
 
-      <nav class="nav" aria-label="Main navigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+        <span class="nav-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
         <a href="#events">Events</a>
         <a href="#info">Info</a>
         <a href="#lineup">Line Up</a>
@@ -1287,5 +1382,45 @@
       <span>Organized by STINGER / Instagram: @thehive.house</span>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const topbar = document.querySelector(".topbar");
+      const toggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelectorAll(".nav a");
+
+      if (!topbar || !toggle) return;
+
+      const closeNav = () => {
+        topbar.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation");
+      };
+
+      const openNav = () => {
+        topbar.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Close navigation");
+      };
+
+      toggle.addEventListener("click", () => {
+        if (topbar.classList.contains("is-open")) {
+          closeNav();
+        } else {
+          openNav();
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 720) closeNav();
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 720) closeNav();
+      });
+    })();
+  </script>
 </body>
 </html>
