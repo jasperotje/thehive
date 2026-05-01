@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#080808">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080808">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>THE HIVE | Tickets</title>
+  <meta
+    name="description"
+    content="THE HIVE ticket page. Choose your event and continue to the official Eventgoose checkout."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080808;
+      --bg-soft: #111111;
+      --panel: rgba(255, 212, 0, 0.07);
+      --panel-strong: rgba(255, 212, 0, 0.12);
+      --text: #f6f0d0;
+      --muted: #bcab67;
+      --gold: #ffd400;
+      --line: rgba(255, 212, 0, 0.16);
+      --line-strong: rgba(255, 212, 0, 0.28);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+      --max: 1220px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #080808;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      background-color: #080808;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255, 212, 0, 0.14), transparent 22%),
+        radial-gradient(circle at 85% 8%, rgba(255, 191, 0, 0.14), transparent 18%),
+        linear-gradient(180deg, #141414 0%, #090909 45%, #060606 100%),
+        linear-gradient(30deg, rgba(255, 212, 0, 0.022) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.022) 87.5%, rgba(255, 212, 0, 0.022) 88%, transparent 88.5%, transparent),
+        linear-gradient(150deg, rgba(255, 212, 0, 0.022) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.022) 87.5%, rgba(255, 212, 0, 0.022) 88%, transparent 88.5%, transparent),
+        linear-gradient(30deg, rgba(255, 212, 0, 0.015) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.015) 87.5%, rgba(255, 212, 0, 0.015) 88%, transparent 88.5%, transparent),
+        linear-gradient(150deg, rgba(255, 212, 0, 0.015) 12%, transparent 12.5%, transparent 87%, rgba(255, 212, 0, 0.015) 87.5%, rgba(255, 212, 0, 0.015) 88%, transparent 88.5%, transparent),
+        linear-gradient(90deg, rgba(255, 212, 0, 0.012) 2%, transparent 2.5%, transparent 97.5%, rgba(255, 212, 0, 0.012) 98%);
+      background-size: auto, auto, auto, 84px 146px, 84px 146px, 84px 146px, 84px 146px, 84px 146px;
+      background-position: center, center, center, 0 0, 0 0, 42px 73px, 42px 73px, 0 0;
+      opacity: 0.8;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 212, 0, 0.12), transparent 24%),
+        radial-gradient(circle at 20% 80%, rgba(255, 212, 0, 0.05), transparent 18%);
+      opacity: 0.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 34px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(8, 8, 8, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 82px;
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: contain;
+      border: 1px solid rgba(255, 212, 0, 0.18);
+      box-shadow: 0 0 26px rgba(255, 212, 0, 0.1);
+      flex: 0 0 auto;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-family: "Anton", sans-serif;
+      font-size: 1.65rem;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      margin-top: 5px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      margin-left: auto;
+      padding: 0;
+      border: 1px solid rgba(255, 212, 0, 0.16);
+      border-radius: 16px;
+      background: rgba(255, 212, 0, 0.04);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .nav-toggle-lines {
+      display: grid;
+      gap: 5px;
+    }
+
+    .nav-toggle-lines span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible,
+    .nav a[aria-current="page"] {
+      color: var(--gold);
+    }
+
+    .nav a:hover::after,
+    .nav a:focus-visible::after,
+    .nav a[aria-current="page"]::after {
+      transform: scaleX(1);
+    }
+
+    .mono {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .tickets-hero {
+      position: relative;
+      padding: 58px 0 22px;
+    }
+
+    .tickets-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+      gap: 30px;
+      align-items: end;
+    }
+
+    .hero-copy::before {
+      content: "";
+      display: block;
+      width: min(320px, 68vw);
+      height: 1px;
+      margin-bottom: 18px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .hero-title {
+      margin: 12px 0 0;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(4.2rem, 11vw, 8rem);
+      line-height: 0.84;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-text {
+      max-width: 34rem;
+      margin: 18px 0 0;
+      color: #eadfb0;
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #0a0a0a;
+      background: var(--gold);
+      box-shadow: 0 18px 36px rgba(255, 212, 0, 0.16);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255, 212, 0, 0.035);
+    }
+
+    .hero-note {
+      padding: 24px 26px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(255, 212, 0, 0.12), transparent 26%),
+        linear-gradient(180deg, rgba(20, 20, 20, 0.98), rgba(8, 8, 8, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-top: 14px;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-note p {
+      margin: 12px 0 0;
+      color: #eadfb0;
+      line-height: 1.72;
+    }
+
+    .tickets-listing {
+      position: relative;
+      padding: 36px 0 56px;
+    }
+
+    .tickets-panel {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(160deg, rgba(255, 212, 0, 0.08), transparent 36%),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.98), rgba(8, 8, 8, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .tickets-panel-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tickets-panel-title {
+      margin: 0;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .tickets-panel-copy {
+      margin: 0;
+      color: #eadfb0;
+      line-height: 1.72;
+      max-width: 42rem;
+    }
+
+    .ticket-embed-shell {
+      padding: 14px;
+      border: 1px solid rgba(255, 212, 0, 0.14);
+      border-radius: 26px;
+      background: rgba(0, 0, 0, 0.34);
+    }
+
+    .ticket-embed-shell iframe {
+      width: 100%;
+      max-width: 600px;
+      height: calc(100vh - 120px);
+      max-height: 1000px;
+      min-height: 760px;
+      border: none;
+      display: block;
+      margin: 0 auto;
+      border-radius: 18px;
+      background: #000;
+    }
+
+    .footer {
+      padding: 0 0 24px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 16px;
+      padding-bottom: env(safe-area-inset-bottom);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1024px) {
+      .tickets-hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .topbar {
+        backdrop-filter: none;
+        background: #080808;
+      }
+
+      .topbar-inner {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0 12px;
+        min-height: auto;
+        padding: 12px 0;
+      }
+
+      .brand {
+        gap: 12px;
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      .brand img {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+      }
+
+      .brand-title {
+        font-size: 1.35rem;
+        letter-spacing: 0.06em;
+      }
+
+      .brand-sub {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .topbar.is-open .nav-toggle-lines span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      .topbar.is-open .nav-toggle-lines span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .topbar.is-open .nav-toggle-lines span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      .nav {
+        width: 100%;
+        order: 3;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-top: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 220ms ease, opacity 180ms ease, padding-top 180ms ease;
+      }
+
+      .topbar.is-open .nav {
+        max-height: 260px;
+        padding-top: 10px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav a {
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 212, 0, 0.12);
+        border-radius: 14px;
+        background: rgba(255, 212, 0, 0.035);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+      }
+
+      .tickets-hero {
+        padding: 34px 0 18px;
+      }
+
+      .tickets-hero-grid {
+        gap: 18px;
+      }
+
+      .hero-title {
+        font-size: clamp(3.3rem, 24vw, 5.2rem);
+      }
+
+      .hero-text {
+        max-width: none;
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 52px;
+        padding: 0 14px;
+        font-size: 0.83rem;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-note,
+      .tickets-panel {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .tickets-panel-head {
+        margin-bottom: 18px;
+      }
+
+      .tickets-panel-title {
+        font-size: clamp(2rem, 14vw, 3.5rem);
+      }
+
+      .tickets-panel-copy {
+        font-size: 0.98rem;
+        line-height: 1.55;
+      }
+
+      .ticket-embed-shell {
+        padding: 10px;
+        border-radius: 22px;
+      }
+
+      .ticket-embed-shell iframe {
+        min-height: 640px;
+        border-radius: 14px;
+      }
+
+      .footer-inner {
+        gap: 8px;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 25vw, 4.4rem);
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        min-height: 50px;
+        font-size: 0.78rem;
+        letter-spacing: 0.07em;
+      }
+
+      .tickets-panel-title {
+        font-size: clamp(1.85rem, 13vw, 3rem);
+      }
+
+      .ticket-embed-shell iframe {
+        min-height: 560px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="../" aria-label="THE HIVE home">
+        <img src="../assets/hive-logo.png" alt="THE HIVE logo">
+        <div class="brand-copy">
+          <div class="brand-title">THE HIVE</div>
+          <div class="brand-sub">House event by STINGER</div>
+        </div>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+        <span class="nav-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <a href="../#events">Events</a>
+        <a href="../#info">Info</a>
+        <a href="../#lineup">Line Up</a>
+        <a href="./" aria-current="page">Tickets</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tickets-hero">
+      <div class="wrap tickets-hero-grid">
+        <div class="hero-copy">
+          <div class="mono">Official Ticket Page</div>
+          <h1 class="hero-title">Tickets</h1>
+          <p class="hero-text">
+            Use the official THE HIVE ticket module below to continue to checkout.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://thehive.eventgoose.com/" target="_blank" rel="noreferrer">Open Full Ticket Page</a>
+            <a class="btn btn-secondary" href="../#events">Back to Events</a>
+          </div>
+        </div>
+
+        <aside class="hero-note" aria-label="Ticket information">
+          <div class="mono">Ticket Info</div>
+          <strong>Official Eventgoose Checkout</strong>
+          <p>
+            Tickets can vary per event and are always sold through the official THE HIVE Eventgoose page.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="tickets-listing" aria-label="Current ticketed events">
+      <div class="wrap">
+        <div class="tickets-panel">
+          <div class="tickets-panel-head">
+            <div class="mono">Current Sale</div>
+            <h2 class="tickets-panel-title">Club Bold / Eindhoven</h2>
+            <p class="tickets-panel-copy">10 July 2026 / 23:00 - 04:00 / 18+ / STINGER / TBA / TBA / TBA</p>
+          </div>
+
+          <div class="ticket-embed-shell">
+            <iframe
+              src="https://thehive.eventgoose.com/events/5KgQw2vZp4N2PlAZ"
+              name="eventgoose"
+              title="THE HIVE ticket module"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>THE HIVE / House &amp; UK Garage / Event Series</span>
+      <span>Organized by STINGER / Instagram: @thehive.house</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const topbar = document.querySelector(".topbar");
+      const toggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelectorAll(".nav a");
+
+      if (!topbar || !toggle) return;
+
+      const closeNav = () => {
+        topbar.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation");
+      };
+
+      const openNav = () => {
+        topbar.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Close navigation");
+      };
+
+      toggle.addEventListener("click", () => {
+        if (topbar.classList.contains("is-open")) {
+          closeNav();
+        } else {
+          openNav();
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 720) closeNav();
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 720) closeNav();
+      });
+    })();
+  </script>
+</body>
+</html>
