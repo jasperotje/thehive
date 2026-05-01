@@ -11,7 +11,7 @@
   <title>THE HIVE | Tickets</title>
   <meta
     name="description"
-    content="THE HIVE ticket page. Choose your event and continue to the official Eventgoose checkout."
+    content="THE HIVE ticket page for the next event. Continue directly to the official Eventgoose checkout."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -233,22 +233,21 @@
 
     .tickets-hero {
       position: relative;
-      padding: 58px 0 22px;
+      padding: 52px 0 12px;
     }
 
-    .tickets-hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
-      gap: 30px;
-      align-items: end;
+    .hero-copy {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .hero-copy::before {
       content: "";
       display: block;
-      width: min(320px, 68vw);
+      width: min(160px, 32vw);
       height: 1px;
-      margin-bottom: 18px;
+      margin: 0 auto 18px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
 
@@ -259,88 +258,27 @@
       line-height: 0.84;
       letter-spacing: 0.03em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--text);
     }
 
     .hero-text {
-      max-width: 34rem;
-      margin: 18px 0 0;
-      color: #eadfb0;
-      font-size: 1.02rem;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 22px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      color: #0a0a0a;
-      background: var(--gold);
-      box-shadow: 0 18px 36px rgba(255, 212, 0, 0.16);
-    }
-
-    .btn-secondary {
-      color: var(--text);
-      border-color: var(--line);
-      background: rgba(255, 212, 0, 0.035);
-    }
-
-    .hero-note {
-      padding: 24px 26px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 14% 18%, rgba(255, 212, 0, 0.12), transparent 26%),
-        linear-gradient(180deg, rgba(20, 20, 20, 0.98), rgba(8, 8, 8, 0.98));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-note strong {
-      display: block;
-      margin-top: 14px;
-      font-family: "Anton", sans-serif;
-      font-size: clamp(2rem, 6vw, 3.4rem);
-      line-height: 0.92;
-      text-transform: uppercase;
       color: var(--gold);
-    }
-
-    .hero-note p {
-      margin: 12px 0 0;
-      color: #eadfb0;
-      line-height: 1.72;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1rem, 2vw, 1.22rem);
+      line-height: 1.65;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .tickets-listing {
       position: relative;
-      padding: 36px 0 56px;
+      padding: 18px 0 56px;
     }
 
     .tickets-panel {
-      padding: 28px;
+      width: min(100%, 720px);
+      margin: 0 auto;
+      padding: 18px;
       border: 1px solid var(--line);
       border-radius: 30px;
       background:
@@ -349,31 +287,8 @@
       box-shadow: var(--shadow);
     }
 
-    .tickets-panel-head {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 22px;
-    }
-
-    .tickets-panel-title {
-      margin: 0;
-      font-family: "Anton", sans-serif;
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
-      line-height: 0.92;
-      text-transform: uppercase;
-      color: var(--gold);
-      letter-spacing: 0.03em;
-    }
-
-    .tickets-panel-copy {
-      margin: 0;
-      color: #eadfb0;
-      line-height: 1.72;
-      max-width: 42rem;
-    }
-
     .ticket-embed-shell {
-      padding: 14px;
+      padding: 12px;
       border: 1px solid rgba(255, 212, 0, 0.14);
       border-radius: 26px;
       background: rgba(0, 0, 0, 0.34);
@@ -411,12 +326,6 @@
     :focus-visible {
       outline: 2px solid var(--gold);
       outline-offset: 4px;
-    }
-
-    @media (max-width: 1024px) {
-      .tickets-hero-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 720px) {
@@ -507,11 +416,7 @@
       }
 
       .tickets-hero {
-        padding: 34px 0 18px;
-      }
-
-      .tickets-hero-grid {
-        gap: 18px;
+        padding: 32px 0 10px;
       }
 
       .hero-title {
@@ -519,43 +424,13 @@
       }
 
       .hero-text {
-        max-width: none;
         font-size: 0.98rem;
-        line-height: 1.6;
+        line-height: 1.7;
       }
 
-      .hero-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      .btn {
-        width: 100%;
-        min-height: 52px;
-        padding: 0 14px;
-        font-size: 0.83rem;
-        letter-spacing: 0.08em;
-      }
-
-      .hero-note,
       .tickets-panel {
         padding: 20px;
         border-radius: 24px;
-      }
-
-      .tickets-panel-head {
-        margin-bottom: 18px;
-      }
-
-      .tickets-panel-title {
-        font-size: clamp(2rem, 14vw, 3.5rem);
-      }
-
-      .tickets-panel-copy {
-        font-size: 0.98rem;
-        line-height: 1.55;
       }
 
       .ticket-embed-shell {
@@ -583,18 +458,9 @@
         font-size: clamp(3rem, 25vw, 4.4rem);
       }
 
-      .hero-actions {
-        grid-template-columns: 1fr;
-      }
-
-      .btn {
-        min-height: 50px;
-        font-size: 0.78rem;
-        letter-spacing: 0.07em;
-      }
-
-      .tickets-panel-title {
-        font-size: clamp(1.85rem, 13vw, 3rem);
+      .hero-text {
+        font-size: 0.86rem;
+        letter-spacing: 0.06em;
       }
 
       .ticket-embed-shell iframe {
@@ -645,38 +511,20 @@
 
   <main>
     <section class="tickets-hero">
-      <div class="wrap tickets-hero-grid">
+      <div class="wrap">
         <div class="hero-copy">
-          <div class="mono">Official Ticket Page</div>
-          <h1 class="hero-title">Tickets</h1>
+          <div class="mono">Next Event</div>
+          <h1 class="hero-title">Get Tickets</h1>
           <p class="hero-text">
-            Use the official THE HIVE ticket module below to continue to checkout.
+            Club Bold / Eindhoven / 10 July 2026 / 23:00 - 04:00 / 18+
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://thehive.eventgoose.com/" target="_blank" rel="noreferrer">Open Full Ticket Page</a>
-            <a class="btn btn-secondary" href="../#events">Back to Events</a>
-          </div>
         </div>
-
-        <aside class="hero-note" aria-label="Ticket information">
-          <div class="mono">Ticket Info</div>
-          <strong>Official Eventgoose Checkout</strong>
-          <p>
-            Tickets can vary per event and are always sold through the official THE HIVE Eventgoose page.
-          </p>
-        </aside>
       </div>
     </section>
 
     <section class="tickets-listing" aria-label="Current ticketed events">
       <div class="wrap">
         <div class="tickets-panel">
-          <div class="tickets-panel-head">
-            <div class="mono">Current Sale</div>
-            <h2 class="tickets-panel-title">Club Bold / Eindhoven</h2>
-            <p class="tickets-panel-copy">10 July 2026 / 23:00 - 04:00 / 18+ / STINGER / TBA / TBA / TBA</p>
-          </div>
-
           <div class="ticket-embed-shell">
             <iframe
               src="https://thehive.eventgoose.com/events/5KgQw2vZp4N2PlAZ"
