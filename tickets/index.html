@@ -11,7 +11,7 @@
   <title>THE HIVE | Tickets</title>
   <meta
     name="description"
-    content="THE HIVE ticket page for the next event. Continue directly to the official Eventgoose checkout."
+    content="THE HIVE ticket page for the next event. Continue directly to the official ticket checkout."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,31 +290,31 @@
     }
 
     .tickets-panel {
-      width: min(100%, 880px);
+      width: min(100%, 920px);
       margin: 0 auto;
-      padding: 24px;
+      padding: 28px;
       border-radius: 8px;
       background: var(--gold);
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
     }
 
     .ticket-embed-shell {
-      padding: 0;
-      border: 0;
-      border-radius: 0;
+      max-width: 760px;
+      margin: 0 auto;
       background: transparent;
     }
 
-    .ticket-embed-shell iframe {
+    .ot-iframe {
       width: 100%;
-      max-width: 640px;
-      height: calc(100vh - 120px);
-      max-height: 1000px;
-      min-height: 820px;
-      border: none;
+      min-height: 860px;
+    }
+
+    .ot-iframe iframe {
+      width: 100% !important;
+      min-height: 860px;
+      border: 0 !important;
       display: block;
-      margin: 0 auto;
-      background: #000;
+      background: transparent;
     }
 
     .footer {
@@ -453,12 +453,13 @@
       }
 
       .tickets-panel {
-        padding: 14px;
+        padding: 18px;
         border-radius: 6px;
       }
 
-      .ticket-embed-shell iframe {
-        min-height: 680px;
+      .ot-iframe,
+      .ot-iframe iframe {
+        min-height: 760px;
       }
 
       .footer-inner {
@@ -485,8 +486,9 @@
         letter-spacing: 0.05em;
       }
 
-      .ticket-embed-shell iframe {
-        min-height: 600px;
+      .ot-iframe,
+      .ot-iframe iframe {
+        min-height: 680px;
       }
     }
 
@@ -548,12 +550,11 @@
       <div class="wrap">
         <div class="tickets-panel">
           <div class="ticket-embed-shell">
-            <iframe
-              src="https://thehive.eventgoose.com/events/5KgQw2vZp4N2PlAZ"
-              name="eventgoose"
-              title="THE HIVE ticket module"
-              loading="lazy"
-            ></iframe>
+            <div
+              class="ot-iframe"
+              data-ot-url="https://shop.weeztix.com/706106d6-4556-11f1-a9cb-7e126431635e"
+              data-ot-guid="706106d6-4556-11f1-a9cb-7e126431635e"
+            ></div>
           </div>
         </div>
       </div>
@@ -567,6 +568,7 @@
     </div>
   </footer>
 
+  <script src="https://v1.widget.shop.weeztix.com/injector.js"></script>
   <script>
     (() => {
       const topbar = document.querySelector(".topbar");
