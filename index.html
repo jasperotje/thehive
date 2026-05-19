@@ -119,6 +119,12 @@
       backdrop-filter: blur(16px);
       background: rgba(8, 8, 8, 0.82);
       border-bottom: 1px solid var(--line);
+      transition: transform 220ms ease;
+      will-change: transform;
+    }
+
+    .topbar.is-hidden {
+      transform: translateY(calc(-100% - 1px));
     }
 
     .topbar-inner {
@@ -1426,19 +1432,42 @@
       const topbar = document.querySelector(".topbar");
       const toggle = document.querySelector(".nav-toggle");
       const navLinks = document.querySelectorAll(".nav a");
+      let lastScrollY = window.scrollY;
 
       if (!topbar || !toggle) return;
 
       const closeNav = () => {
         topbar.classList.remove("is-open");
+        topbar.classList.remove("is-hidden");
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Open navigation");
       };
 
       const openNav = () => {
         topbar.classList.add("is-open");
+        topbar.classList.remove("is-hidden");
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Close navigation");
+      };
+
+      const syncTopbarVisibility = () => {
+        const currentScrollY = window.scrollY;
+
+        if (window.innerWidth <= 720 || topbar.classList.contains("is-open")) {
+          topbar.classList.remove("is-hidden");
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (currentScrollY <= 24) {
+          topbar.classList.remove("is-hidden");
+        } else if (currentScrollY > lastScrollY + 8) {
+          topbar.classList.add("is-hidden");
+        } else if (currentScrollY < lastScrollY - 8) {
+          topbar.classList.remove("is-hidden");
+        }
+
+        lastScrollY = currentScrollY;
       };
 
       toggle.addEventListener("click", () => {
@@ -1484,8 +1513,11 @@
         });
       });
 
+      window.addEventListener("scroll", syncTopbarVisibility, { passive: true });
+
       window.addEventListener("resize", () => {
         if (window.innerWidth > 720) closeNav();
+        syncTopbarVisibility();
       });
     })();
   </script>
